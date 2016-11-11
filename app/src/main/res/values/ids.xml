@@ -5,6 +5,7 @@
     <item name="txt_item_todo_desc" type="id"/>
     <item name="spinner_todo_category" type="id"/>
     <item name="btn_add_todo" type="id"/>
+    <item name="btn_del_todo" type="id"/>
     <item name="rw_tasks_list" type="id"/>
     <item name="chbox_done" type="id"/>
 

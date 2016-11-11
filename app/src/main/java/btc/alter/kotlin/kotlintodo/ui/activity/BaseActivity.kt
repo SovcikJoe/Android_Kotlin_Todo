@@ -8,9 +8,12 @@ import android.view.MenuItem
 import btc.alter.kotlin.kotlintodo.R
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
+import org.jetbrains.anko.info
 
 /**
  * Created by theshade on 11/8/16.
+ *
+ * A base Activity that deals with boilerplate for all activities
  */
 abstract class BaseActivity : AppCompatActivity(),AnkoLogger {
     protected abstract val layoutResource: Int
@@ -18,6 +21,8 @@ abstract class BaseActivity : AppCompatActivity(),AnkoLogger {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        info("onCreate() before settingContent")
+        info("$layoutResource")
         setContentView(layoutResource)
         setSupportActionBar(toolbar)
     }

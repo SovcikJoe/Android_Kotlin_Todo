@@ -9,6 +9,7 @@ import btc.alter.kotlin.kotlintodo.R
 import btc.alter.kotlin.kotlintodo.common.createUi
 import btc.alter.kotlin.kotlintodo.model.Todo
 import btc.alter.kotlin.kotlintodo.ui.ui.TodoItemUi
+import io.realm.Realm
 import io.realm.RealmRecyclerViewAdapter
 import io.realm.RealmResults
 import org.jetbrains.anko.AnkoLogger
@@ -17,6 +18,9 @@ import org.jetbrains.anko.info
 
 /**
  * Created by theshade on 11/8/16.
+ *
+ * RealmRecyclerView Adapter
+ * TODO: Look into implementing a modular style recyclerViews
  */
 open class TodoAdapter(context: Context,
                        results: RealmResults<Todo>?,
@@ -24,7 +28,7 @@ open class TodoAdapter(context: Context,
                        private val clickListener: TodoItemClickListener
 ): RealmRecyclerViewAdapter<Todo, TodoAdapter.TodoAdapterViewholder>(context,results,autoUpdate) {
     override fun onBindViewHolder(holder: TodoAdapterViewholder?, position: Int) {
-        var todo = data?.get(position)
+        val todo = data?.get(position)
         holder?.bind(todo!!)
     }
 
@@ -40,6 +44,7 @@ open class TodoAdapter(context: Context,
         init{
             info("Viewholder init()")
             itemView.setOnClickListener(this)
+            itemView.setOnLongClickListener(this)
         }
 
         fun bind(todo:Todo){
@@ -57,7 +62,7 @@ open class TodoAdapter(context: Context,
         }
         override fun onClick(view: View?) {
             todoItemView.isChecked = !todoItemView.isChecked
-            todo?.isDone = todoItemView.isChecked
+            Realm.getDefaultInstance().executeTransaction{todo?.isDone = todoItemView.isChecked}
         }
     }
 

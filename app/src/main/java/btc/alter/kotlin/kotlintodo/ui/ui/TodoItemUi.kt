@@ -6,8 +6,8 @@ import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
 import btc.alter.kotlin.kotlintodo.R
-import btc.alter.kotlin.kotlintodo.R.attr.multiChoiceItemLayout
 import org.jetbrains.anko.*
 
 /**
@@ -24,13 +24,15 @@ class TodoItemUi:AnkoComponent<ViewGroup> {
                 horizontalPadding = dip(16)
                 checkedTextView {
                     lparams {
-                        gravity = Gravity.CENTER_VERTICAL
+                        width = matchParent
+                        gravity = Gravity.CENTER + Gravity.END
+                        textAlignment = TextView.TEXT_ALIGNMENT_VIEW_END
                     }
                     id = R.id.txt_item_todo_desc
                     singleLine = true
                     ellipsize = TextUtils.TruncateAt.END
-                    textSize = 16f
-                    checkMarkDrawable = AppCompatResources.getDrawable(context, multiChoiceItemLayout)
+                    textSize = 24f
+                    checkMarkDrawable = AppCompatResources.getDrawable(context, R.drawable.abc_btn_check_material)
                 }
             }
 

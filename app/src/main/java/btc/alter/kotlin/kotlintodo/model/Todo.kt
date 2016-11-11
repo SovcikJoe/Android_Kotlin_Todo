@@ -5,6 +5,8 @@ import io.realm.annotations.PrimaryKey
 
 /**
  * Created by theshade on 11/8/16.
+ *
+ * Todd-Data-Object
  */
 open class Todo: RealmObject() {
     @PrimaryKey open var id:String? = null

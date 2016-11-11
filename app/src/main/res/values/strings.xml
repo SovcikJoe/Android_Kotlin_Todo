@@ -6,4 +6,5 @@
     <string name="add_new_task">ADD NEW TASK</string>
     <string name="btn_add_todo">SAVE THE TASK</string>
     <string name="txt_todo_desc_hint">What do you have to do?</string>
+    <string name="btn_del_todo">Delete Todo</string>
 </resources>
