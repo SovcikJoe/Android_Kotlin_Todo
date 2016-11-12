@@ -25,16 +25,15 @@ import org.jetbrains.anko.support.v4.find
  */
 class TodoListFragment: Fragment(),AnkoLogger,TodoAdapter.TodoItemClickListener {
     var realm: Realm? = null
-    val recyclerView by lazy{find<RecyclerView>(R.id.rw_tasks_list)}
+//    val recyclerView by lazy{find<RecyclerView>(R.id.rw_tasks_list)}
+    var recyclerView:RecyclerView? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         info("onCreateView()")
-        realm = Realm.getDefaultInstance()
         if (container != null) {
             return TodoListUi().createUi(container)
         }
-        info("Container is null")
-        return null
+        error("Container in onCreateView is null")
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         info("onActivityCreated()")
@@ -44,13 +43,12 @@ class TodoListFragment: Fragment(),AnkoLogger,TodoAdapter.TodoItemClickListener 
     override fun onResume() {
         info("OnResume()")
         super.onResume()
+        realm = Realm.getDefaultInstance()
+        recyclerView = find<RecyclerView>(R.id.rw_tasks_list)
         val todos = realm?.where(Todo::class.java)?.findAll()
-        if (recyclerView.adapter == null){
-            info("recyclerVie.adapter is null")
-            val adapter = TodoAdapter(context, todos, true,this)
-            recyclerView.adapter = adapter
-        }
-        recyclerView.adapter.notifyDataSetChanged()
+        val adapter = TodoAdapter(context, todos, true,this)
+        recyclerView?.setAdapter(adapter)
+//        recyclerView?.adapter?.notifyDataSetChanged()  RealmAdapter should be doing this automatcally
     }
 
     override fun onDestroyView() {

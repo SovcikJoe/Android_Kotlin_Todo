@@ -47,4 +47,5 @@ dependencies {
 
     //Realm
     compile 'io.realm:android-adapters:1.4.0'
+    compile 'com.github.thorbenprimke:realm-recyclerview:0.9.23'
 }

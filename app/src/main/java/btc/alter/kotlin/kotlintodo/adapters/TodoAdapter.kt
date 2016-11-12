@@ -27,6 +27,7 @@ open class TodoAdapter(context: Context,
                        autoUpdate: Boolean,
                        private val clickListener: TodoItemClickListener
 ): RealmRecyclerViewAdapter<Todo, TodoAdapter.TodoAdapterViewholder>(context,results,autoUpdate) {
+
     override fun onBindViewHolder(holder: TodoAdapterViewholder?, position: Int) {
         val todo = data?.get(position)
         holder?.bind(todo!!)
